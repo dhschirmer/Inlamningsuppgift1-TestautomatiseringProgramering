@@ -5,36 +5,52 @@ import java.util.Scanner;
 public class MorseConverter {
     public static void main(String[] args) {
 
+        //Objekt
+        MorseConverterLogic converter = new MorseConverterLogic();
 
-        String text = "";
-        boolean iMeny = true;
+        boolean menu = true;
 
-        while (iMeny) {
+        while (menu) {
 
-            System.out.println("Välj ett av alternativen nedan:");
-            System.out.println("1 - Converter o codigo morse para ingles");
-            System.out.println("2 - Converter ingles para codigo morse");
-            System.out.println("3 - Sair");
+            System.out.println("Choose one of the options below:");
+            System.out.println("1 - Convert the Morse code to English");
+            System.out.println("2 - Convert English to Morse code");
+            System.out.println("3 - Exit");
+
 
             Scanner scanner = new Scanner(System.in);
-            String menyVal = scanner.nextLine();
+            String menuChoice = scanner.nextLine();
+            //text = scanner.nextLine();
 
 
-            switch(menyVal){
-                case "1":
-                    System.out.println("1 - Converter o codigo morse para ingles");
+            //converter.(text);
+
+            switch(menuChoice){
+                case "1": {
+                    System.out.println("Escreva em codigo morse: " );
+                    String text = "";
+                    text = scanner.nextLine();
+                    String result = converter.convertFromMorse(text);
+                    System.out.println(result);
                     break;
-                case "2":
-                    System.out.println("2 - Converter ingles para codigo morse");
+                }
+                case "2": {
+                    System.out.println("Escreva em ingles");
+                    String text = "";
+                    text = scanner.nextLine();
+                    String result = converter.convertFromEnglish(text);
+                    System.out.println(result);
                     break;
+                }
                 case "3":
                     System.out.println("3 - Sair");
-                    iMeny = false;
+                    menu = false;
                     break;
                 default:
                     System.out.println("Not a valid operation");
 
             }
+
         }
     }
 }
