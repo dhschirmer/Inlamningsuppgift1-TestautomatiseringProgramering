@@ -43,7 +43,7 @@ public class MorseConverter {
                     break;
                 }
                 case "3":
-                    System.out.println("3 - Sair");
+                    System.out.println("3 - Exit");
                     menu = false;
                     break;
                 default:
