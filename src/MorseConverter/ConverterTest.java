@@ -10,7 +10,7 @@ public class ConverterTest {
 
     public void testIsEnglishValid () {
 
-        MorseConverterLogic converter = new MorseConverterLogic();
+        MorseConverter converter = new MorseConverter();
 
         String validInput = "ABCD";
         String invalidInput = "AB!D";
@@ -24,7 +24,7 @@ public class ConverterTest {
 
     public void testIsMorseValid () {
 
-        MorseConverterLogic converter = new MorseConverterLogic();
+        MorseConverter converter = new MorseConverter();
 
         String validInput = ".- -... -.-. -..";
         String invalidInput = ".- -...! -.-. -..";
@@ -37,7 +37,7 @@ public class ConverterTest {
 
     public void testConvertFromMorse () {
 
-        MorseConverterLogic converter = new MorseConverterLogic();
+        MorseConverter converter = new MorseConverter();
 
         String testdata = ".- -... -.-. -..";
         String expected = "ABCD";
@@ -52,7 +52,7 @@ public class ConverterTest {
 
     public void testConvertFromMorseMoreWords () {
 
-        MorseConverterLogic converter = new MorseConverterLogic();
+        MorseConverter converter = new MorseConverter();
 
         String testdata = ".- -... -.-. -.. .- -... -.-. -..";
         String expected = "ABCDABCD";
@@ -67,7 +67,7 @@ public class ConverterTest {
 
     public void testConvertFromEnglish () {
 
-        MorseConverterLogic converter = new MorseConverterLogic();
+        MorseConverter converter = new MorseConverter();
 
         String testdata = "ABCD";
         String expected = ".- -... -.-. -..";
@@ -82,12 +82,42 @@ public class ConverterTest {
 
     public void testConvertFromEnglishMoreWords () {
 
-        MorseConverterLogic converter = new MorseConverterLogic();
+        MorseConverter converter = new MorseConverter();
 
         String testdata = "ABCD ABCD";
         String expected = ".- -... -.-. -.. .- -... -.-. -..";
 
         String actual = converter.convertFromEnglish(testdata);
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+
+    public void testMorseEnglishMixed () {
+
+        MorseConverter converter = new MorseConverter();
+
+        String testdata = ". . A .";
+        Boolean expected = false;
+
+        Boolean actual = converter.isMorseValid(testdata);
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+
+    public void testEnglishMorseMixed () {
+
+        MorseConverter converter = new MorseConverter();
+
+        String testdata = "A . A .";
+        Boolean expected = false;
+
+        Boolean actual = converter.isMorseValid(testdata);
 
         assertEquals(expected, actual);
 
