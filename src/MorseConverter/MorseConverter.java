@@ -4,10 +4,12 @@ import java.util.HashMap;
 
 public class MorseConverter {
 
-    //Attribut
+    // Attribut
+    // HashMaps - Morsekod till Engelska och Engelska till Morsekod
     private HashMap<String, String> morseToEnglishMap;
     private HashMap<String, String> englishToMorseMap;
-    
+
+    // Konstruktor
     public MorseConverter() {
 
         String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
@@ -16,96 +18,110 @@ public class MorseConverter {
         morseToEnglishMap = new HashMap<>();
         englishToMorseMap = new HashMap<>();
 
+        // Initierar HashMaps
         for (int i=0;i<morse.length;i++) {
             morseToEnglishMap.put(morse[i], alphabet[i]);
-            englishToMorseMap.put(alphabet[i] , morse[i]);
+            englishToMorseMap.put(alphabet[i], morse[i]);
         }
     }
 
-    //parte do felhantering
+    // Valideringsmetod för att kontrollera om det är tillåtet att konvertera från Morsekod
     public boolean isMorseValid (String text) {
-        //Iterar (for) sob os caracteres dentro de text
+
+        //Variabel som lagrar texten separerad med mellanslag
         String[] morse = text.split(" ");
 
+        // Felhantering - Konvertera inte tom text
+        if (morse.length == 0) {
+            return false;
+        }
+
+        // Iterera över tecknen i text
         for (int i=0;i<morse.length;i++) {
 
-            //text aqui eh cada pedaco do array
+            // Kontrollera om tecknen finns i HashMapen
+            // Felhantering - Om tecknet inte finns i HashMapen returneras false och ett felmeddelande
             if (!morseToEnglishMap.containsKey(morse[i])) {
-                System.out.println("Error: Invalid morse code found!"); //imprimir caracter que deu erro.
+                System.out.println("Error: Invalid morse code found!");
                 return false;
             }
         }
+
+        // Om tecknet finns i HashMapen returneras true
         return true;
-
-        //Checar se esse caracter existe dentro do map, se nao existir, retorna falso
-
     }
 
-
+    // Valideringsmetod för att kontrollera om det är tillåtet att konvertera från engelska
     public boolean isEnglishValid (String text) {
 
-        //Iterar (for) sob os caracteres dentro de text
+        // Felhantering - Konvertera inte tom text
+        if (text.isEmpty()) {
+            return false;
+        }
+
+        // Kontrollera om tecknen finns i HashMapen
         for (int i=0;i<text.length();i++) {
-            String character = String.valueOf(text.charAt(i)).toUpperCase(); //Extrai o caracter do texto na posicao i
-            if (!character.equals(" ") && !englishToMorseMap.containsKey(character)) {
-                System.out.println("Error: Invalid character found!"); //imprimir caracter que deu erro.
+            String character = String.valueOf(text.charAt(i)).toUpperCase();
+
+            // Felhantering - Om tecknet inte finns i HashMapen och inte är ett mellanslag
+            // Returneras false och ett felmeddelande
+            if (!englishToMorseMap.containsKey(character)  && !character.equals(" ")) {
+                System.out.println("Error: Invalid character found!");
                 return false;
             }
         }
+
+        // Om tecknet finns i HashMapen returneras true
         return true;
-
-        //Checar se esse caracter existe dentro do map, se nao existir, retorna falso
-
     }
 
+    // Metod för konvertering från HashMap Morsekod
     public String convertFromMorse(String text) {
+        // Variabel som lagrar resultatet av konverteringen
         String result = "";
+
+        // Om tecknen är giltiga för konvertering, börja konverteringen
         if (isMorseValid(text)) {
+            // Variabel som lagrar texten separerad med mellanslag
             String[] morse = text.split(" ");
 
+            // Iterera över tecknen i texten
             for (int i=0;i<morse.length;i++) {
-
-                    result = result + morseToEnglishMap.get(morse[i]);
+                // Lägg till nästa konverterade tecken till resultatet
+                result = result + morseToEnglishMap.get(morse[i]);
                 }
             }
-
-
-
-
-//        //Testar se a string eh valida para conversao (If)
-//        //Usar o split para iterar e converter, os caracteres convertidos vao no result
-//        //retorna o result
-
+        // Returnera konverteringen
         return result;
     }
 
+    // Metod för konvertering från HashMap Engelska
     public String convertFromEnglish(String text) {
+
+        // Variabel som lagrar resultatet av konverteringen
         String result = "";
+
+        // Om tecknen är giltiga för konvertering, börja konverteringen
         if (isEnglishValid(text)) {
 
+            // Iterera över tecknen i texten
             for (int i = 0; i < text.length(); i++) {
+
+                // Sträng som lagrar tecknet - Homogeniserade tecken
+                // HashMap accepterar endast strängar i storbokstav
                 String character = String.valueOf(text.charAt(i)).toUpperCase();
 
+                // Konvertera alla tecken förutom mellanslag
                 if (!character.equals(" ")) {
+                    // Lägg till nästa konverterade tecken till morsekodresultatet
                     result = result + englishToMorseMap.get(character) + " ";
                 }
             }
         }
+        // Returnera konverteringen - utan det sista mellanslaget
             return result.trim();
         }
 
 }
 
-
-//    public String convertFromEnglish (String text) {
-//        String result = "From English";
-//        //Testar se o texto eh valido para conversao (if)
-//        //Remover os espacos
-//        //Iterar sob os caracteres resultantes dos espacos
-//        //Converter cada caracter e adiciona no result
-//        return result;
-//        //return map.get(text);
-//    }
-
-//}
 
