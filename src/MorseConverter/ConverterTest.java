@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class ConverterTest {
 
     @Test
-    public void testIsMorseValid () {
+    public void testIsMorseValid() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -26,7 +26,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testIsEnglishValid () {
+    public void testIsEnglishValid() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -45,7 +45,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromMorseOne () {
+    public void testConvertFromMorseOne() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -60,7 +60,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromMorse () {
+    public void testConvertFromMorse() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -76,7 +76,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromMorseMoreWords () {
+    public void testConvertFromMorseMoreWords() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -89,8 +89,24 @@ public class ConverterTest {
         // Assert
         assertEquals(expected, actual);
     }
+
     @Test
-    public void testConvertFromEnglishOne () {
+    public void testConvertFromMorseAllChars() {
+
+        // Arrange
+        MorseConverter converter = new MorseConverter();
+        String testdata = ".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..";
+        String expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        // Act
+        String actual = converter.convertFromMorse(testdata);
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testConvertFromEnglishOne() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -105,7 +121,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromEnglish () {
+    public void testConvertFromEnglish() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -120,7 +136,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromEnglishMoreWords () {
+    public void testConvertFromEnglishMoreWords() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -135,7 +151,22 @@ public class ConverterTest {
     }
 
     @Test
-    public void testMorseEnglishMixed () {
+    public void testConvertFromEnglishAllChars() {
+
+        // Arrange
+        MorseConverter converter = new MorseConverter();
+        String testdata = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String expected = ".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..";
+
+        // Act
+        String actual = converter.convertFromEnglish(testdata);
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testMorseEnglishMixed() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -150,7 +181,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testEnglishMorseMixed () {
+    public void testEnglishMorseMixed() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -165,7 +196,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testMorseEnglishEmpty () {
+    public void testMorseEnglishEmpty() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -180,7 +211,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testEnglishMorseEmpty () {
+    public void testEnglishMorseEmpty() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -195,7 +226,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromMorseSpecialCharacter () {
+    public void testConvertFromMorseSpecialCharacter() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();
@@ -210,7 +241,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void testConvertFromEnglishSpecialCharacter () {
+    public void testConvertFromEnglishSpecialCharacter() {
 
         // Arrange
         MorseConverter converter = new MorseConverter();

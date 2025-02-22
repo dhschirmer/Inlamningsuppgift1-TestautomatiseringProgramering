@@ -23,11 +23,11 @@ public class MorseMenu {
             String menuChoice = scanner.nextLine();
 
             // Valmeny
-            switch(menuChoice){
+            switch (menuChoice) {
 
                 // Morsekod till Engelska
                 case "1": {
-                    System.out.println("Write in Morse code: " );
+                    System.out.println("Write in Morse code: ");
                     String text = "";
                     text = scanner.nextLine();
 
